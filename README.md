@@ -36,7 +36,7 @@ if __name__ == "__main__":
     with open("出力パス", "wb") as f:
         pickle.dump(key, f)
 ~~~
-2. msg変数に隠したい文字を入れる。
+2. 隠したい画像の読み込み
 ~~~python
 def stegano_encode(imgpath, outpath):
     img = read_img(imgpath)
