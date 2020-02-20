@@ -31,13 +31,13 @@ def stegano_encode(imgpath, outpath):
         x = random.randint(0, img.size[0]-1)
         y = random.randint(0, img.size[1]-1)
         if [x, y] in key: continue
-        key.append([x, y])
 
         # 情報の挿入
         r, g, b = img.getpixel((x, y))
         if r == 255 and g == 255 and b == 255: continue # 白色は対象にしない。わかりやすいから。
         r, g, b = char_enc(r, g, b, msg.pop(0))
         img.putpixel((x, y), (r, g, b))
+        key.append([x, y])
 
     write_img(img, outpath)
     return key
@@ -61,12 +61,12 @@ if __name__ == "__main__":
     # エンコード時
     #print("Image encode")
     #key = stegano_encode(imgpath, outpath)
-    #with open("images/stegano_key.txt", "wb") as f:
+    #with open("images/stegano_key", "wb") as f:
     #    pickle.dump(key, f)
 
     # デコード時
     key = []
-    with open("images/stegano_key.txt", "rb") as f:
+    with open("images/stegano_key", "rb") as f:
         key = pickle.load(f)
 
     print("Image decode")
